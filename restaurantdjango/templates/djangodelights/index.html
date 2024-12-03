@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Djaffa Cake</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4a261; color: white; }
+        h1, h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Django Djaffa Cake</h1>
+
+    <h2>Ingredients</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price per Unit</th>
+        </tr>
+        {% for ingredient in ingredients %}
+        <tr>
+            <td>{{ ingredient.name }}</td>
+            <td>{{ ingredient.quantity }}</td>
+            <td>{{ ingredient.price_per_unit }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Menu Items</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        {% for menu_item in menu_items %}
+        <tr>
+            <td>{{ menu_item.name }}</td>
+            <td>{{ menu_item.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Recipe Requirements</h2>
+    <table>
+        <tr>
+            <th>Menu Item</th>
+            <th>Ingredient</th>
+            <th>Quantity Required</th>
+        </tr>
+        {% for recipe in recipe_requirements %}
+        <tr>
+            <td>{{ recipe.menu_item.name }}</td>
+            <td>{{ recipe.ingredient.name }}</td>
+            <td>{{ recipe.quantity_required }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Purchases</h2>
+    <table>
+        <tr>
+            <th>Menu Item</th>
+            <th>Timestamp</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+        </tr>
+        {% for purchase in purchases %}
+        <tr>
+            <td>{{ purchase.menu_item.name }}</td>
+            <td>{{ purchase.timestamp }}</td>
+            <td>{{ purchase.quantity }}</td>
+            <td>{{ purchase.total_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
