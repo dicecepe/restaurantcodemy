@@ -1,18 +1,16 @@
 from django.db import models
 
-# Create your models here.
-
-#Model for Ingredits
+# Model for Ingredients
 class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
     quantity = models.FloatField(help_text="Available quantity in stock")
     price_per_unit = models.DecimalField(max_digits=10, decimal_places=2, help_text="Price per unit of the ingredient")
 
-    def __star__(self):
+    def __str__(self):
         return self.name
     
 
-# Model for Menut Items
+# Model for Menu Items
 class MenuItem(models.Model):
     name = models.CharField(max_length=100, unique=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Price of the menu item")
@@ -30,6 +28,8 @@ class RecipeRequirement(models.Model):
     def __str__(self):
         return f"{self.quantity_required} of {self.ingredient.name} for {self.menu_item.name}"
     
+
+# Model for Purchases
 class Purchase(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name="purchases")
     timestamp = models.DateTimeField(auto_now_add=True)

@@ -78,5 +78,69 @@
         </tr>
         {% endfor %}
     </table>
+
+    <h2>Restaurant Dashboard</h2>
+
+<h3>Inventory</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price per Unit</th>
+    </tr>
+    {% for item in inventory %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price_per_unit }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Purchases</h3>
+<table>
+    <tr>
+        <th>Menu Item</th>
+        <th>Timestamp</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+    </tr>
+    {% for purchase in purchases %}
+    <tr>
+        <td>{{ purchase.menu_item.name }}</td>
+        <td>{{ purchase.timestamp }}</td>
+        <td>{{ purchase.quantity }}</td>
+        <td>{{ purchase.total_price }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Menu</h3>
+<table>
+    <tr>
+        <th>Menu Item</th>
+        <th>Price</th>
+        <th>Ingredients</th>
+    </tr>
+    {% for detail in menu_details %}
+    <tr>
+        <td>{{ detail.menu_item.name }}</td>
+        <td>{{ detail.menu_item.price }}</td>
+        <td>
+            <ul>
+                {% for req in detail.recipe_requirements %}
+                <li>{{ req.ingredient.name }}: {{ req.quantity_required }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Summary</h3>
+<p>Total Revenue: ${{ total_revenue }}</p>
+<p>Total Cost: ${{ total_cost }}</p>
+<p>Profit: ${{ profit }}</p>
+
 </body>
 </html>
